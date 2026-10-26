@@ -8,14 +8,12 @@ def iniciar_servidor_udp():
         servidor.bind((HOST, PORTA))
         print("Serv. Ativo\n")
 
-        # Buffer grande o bastante para a imagem (máx. de um datagrama UDP: ~65507 bytes)
         dados, addr = servidor.recvfrom(65535)
         print("Pacote recebido")
         print(f"Tamanho: {len(dados)} bytes")
         print(f"IP: {addr[0]}")
         print(f"Porta: {addr[1]}")
 
-        # Salva os bytes recebidos como arquivo de imagem
         with open("imagem_recebida.jpg", "wb") as arquivo:
             arquivo.write(dados)
         print("Imagem salva em imagem_recebida.jpg")
